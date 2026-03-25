@@ -75,6 +75,22 @@ That's it.
 
 Each agent is launched via [Claude Code](https://docs.anthropic.com/en/docs/claude-code) in yolo mode (`--dangerously-skip-permissions`), giving it full autonomy to read, write, and execute. The firmware prompt is passed directly to `claude` as a one-shot instruction — no framework, no SDK, just a CLI call.
 
+## Install
+
+Clone the repo and run the install script to add the `/promptware` skill to Claude Code:
+
+```powershell
+git clone https://github.com/nielsbosma/Promptware.git
+cd Promptware
+.\install.ps1
+```
+
+Then in any Claude Code session, use `/promptware` to scaffold a new module:
+
+```
+/promptware MeetingPrep - OSINT meeting participants and email me a brief
+```
+
 ## Reference Implementation
 
 See the [`/reference`](./reference/) directory for a minimal working example — a `CreateCommit` agent stripped down to just the essentials (no accumulated logs, memory, or tools).
