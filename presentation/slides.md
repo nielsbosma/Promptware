@@ -202,7 +202,12 @@ Each one is now full of learned patterns, self-made tools, and accumulated memor
 
 # Example: Meeting Prep Agent
 
+<div class="relative">
 <img src="/example-meeting.png" class="mx-auto h-96 rounded shadow-lg" />
+<div class="absolute -right-4 -bottom-4 w-64 p-3 bg-yellow-200 text-black text-xs rotate-2 shadow-md" style="font-family: 'Comic Sans MS', cursive;">
+Promptware that runs every day at 6:00, uses Google Workspace CLI to get today's meetings, OSINTs the s*it out of that person, and sends me an email.
+</div>
+</div>
 
 ---
 layout: center
