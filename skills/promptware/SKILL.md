@@ -143,10 +143,10 @@ If user mentions a number like 0001 - this refers to a log file under /Logs/ - R
 
 ### Utils.ps1
 ```powershell
-$claudeDir = Join-Path $env:USERPROFILE ".local\bin"
+$claudeDir = Join-Path $HOME ".local" "bin"
 if (Test-Path $claudeDir) {
     if ($env:PATH -notlike "*$claudeDir*") {
-        $env:PATH = "$claudeDir;$env:PATH"
+        $env:PATH = "$claudeDir$([System.IO.Path]::PathSeparator)$env:PATH"
     }
 }
 
@@ -221,8 +221,13 @@ function CollectArgs {
     if ($joined -eq "" -and $Optional) { return "(No Args)" }
     if ($joined -eq "") {
         $tempFile = [System.IO.Path]::GetTempFileName()
-        Write-Host "No arguments provided. Opening Notepad - save the file and close it to continue."
-        Start-Process -FilePath "notepad.exe" -ArgumentList $tempFile -Wait
+        Write-Host "No arguments provided. Opening editor - save the file and close it to continue."
+        if ($IsWindows) {
+            Start-Process -FilePath "notepad.exe" -ArgumentList $tempFile -Wait
+        } else {
+            $editor = if ($IsMacOS) { "open -W -a TextEdit" } else { $env:EDITOR ?? "nano" }
+            & sh -c "$editor '$tempFile'"
+        }
         $joined = ((Get-Content $tempFile) -join " ").Trim()
         Remove-Item $tempFile
     }
