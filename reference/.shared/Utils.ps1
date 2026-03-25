@@ -1,8 +1,8 @@
 # Ensure claude CLI is on the PATH
-$claudeDir = Join-Path $env:USERPROFILE ".local\bin"
+$claudeDir = Join-Path $HOME ".local" "bin"
 if (Test-Path $claudeDir) {
     if ($env:PATH -notlike "*$claudeDir*") {
-        $env:PATH = "$claudeDir;$env:PATH"
+        $env:PATH = "$claudeDir$([System.IO.Path]::PathSeparator)$env:PATH"
     }
 }
 
@@ -72,8 +72,13 @@ function CollectArgs {
 
     if ($joined -eq "") {
         $tempFile = [System.IO.Path]::GetTempFileName()
-        Write-Host "No arguments provided. Opening Notepad - save the file and close it to continue."
-        Start-Process -FilePath "notepad.exe" -ArgumentList $tempFile -Wait
+        $editor = if ($IsWindows) { "notepad.exe" } elseif ($IsMacOS) { "open -W -a TextEdit" } else { $env:EDITOR ?? "nano" }
+        Write-Host "No arguments provided. Opening editor - save the file and close it to continue."
+        if ($IsWindows) {
+            Start-Process -FilePath "notepad.exe" -ArgumentList $tempFile -Wait
+        } else {
+            & sh -c "$editor '$tempFile'"
+        }
         $joined = ((Get-Content $tempFile) -join " ").Trim()
         Remove-Item $tempFile
     }

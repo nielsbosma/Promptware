@@ -1,6 +1,7 @@
-# Install Promptware skills into Claude Code
-$skillsDir = Join-Path $env:USERPROFILE ".claude\skills"
-$source = Join-Path $PSScriptRoot "skills\promptware"
+#!/usr/bin/env pwsh
+# Install Promptware skills into Claude Code (requires PowerShell 7+)
+$skillsDir = Join-Path $HOME ".claude" "skills"
+$source = Join-Path $PSScriptRoot "skills" "promptware"
 $target = Join-Path $skillsDir "promptware"
 
 if (Test-Path $target) {
@@ -13,5 +14,5 @@ if (-not (Test-Path $skillsDir)) {
     New-Item -ItemType Directory -Path $skillsDir | Out-Null
 }
 
-New-Item -ItemType Junction -Path $target -Target $source | Out-Null
+New-Item -ItemType SymbolicLink -Path $target -Target $source | Out-Null
 Write-Host "Installed! Use /promptware in Claude Code to scaffold a new module." -ForegroundColor Green
