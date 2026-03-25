@@ -1,5 +1,7 @@
 # Promptware
 
+[View the presentation (PDF)](./presentation/slides.pdf)
+
 **Software made of prompts.**
 
 Born from a sleepless night around one question: *How can I make self-improving software?*
