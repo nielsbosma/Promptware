@@ -1,0 +1,16 @@
+. "$PSScriptRoot\.shared\Utils.ps1"
+
+$programFolder = GetProgramFolder $PSCommandPath
+
+$args = CollectArgs $args -Optional
+
+$logFile = GetNextLogFile $programFolder
+
+$promptFile = PrepareFirmware $PSScriptRoot $logFile $programFolder @{ Args = $args; WorkDir = (Get-Location).Path }
+
+Write-Host "Starting Agent..."
+Push-Location $programFolder
+claude --dangerously-skip-permissions -- (Get-Content $promptFile -Raw)
+Pop-Location
+
+Remove-Item $promptFile
