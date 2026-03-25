@@ -199,6 +199,12 @@ Each one is now full of learned patterns, self-made tools, and accumulated memor
 </v-click>
 
 ---
+
+# Example: Meeting Prep Agent
+
+<img src="/example-meeting.png" class="mx-auto h-96 rounded shadow-lg" />
+
+---
 layout: center
 class: text-center
 ---
