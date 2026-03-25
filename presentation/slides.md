@@ -14,6 +14,8 @@ transition: slide-left
 
 Software made of prompts
 
+by Niels Bosma (niels@ivy.app)
+
 <div class="abs-br m-6 text-sm opacity-50">
 Lightning Talk
 </div>
@@ -106,6 +108,8 @@ Launcher.ps1  -->  Firmware.md  -->  Program.md  -->  Do the work  -->  Reflect
      |_____________________________________________________________________|
                               next run is better
 ```
+
+Powered by **Claude Code** in yolo mode (`--dangerously-skip-permissions`)
 
 </v-click>
 
@@ -202,3 +206,9 @@ class: text-center
 # Promptware
 
 Firmware + Program + Memory + Tools + Reflection
+
+<img src="/qr.png" class="mx-auto mt-6 w-40" />
+
+<div class="mt-2 text-sm opacity-50">
+github.com/nielsbosma/Promptware
+</div>

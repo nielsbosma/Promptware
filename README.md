@@ -63,13 +63,17 @@ At the end of every execution, the agent asks itself:
 
 ## Why PowerShell?
 
-PowerShell is cross-platform — but really, use whatever you want. The pattern is language-agnostic. You need:
+PowerShell is cross-platform — but really, use whatever you want. The pattern is script-agnostic. You need:
 
 1. A thin launcher script
 2. A firmware template
 3. A folder with `Program.md`
 
 That's it.
+
+## How It Runs
+
+Each agent is launched via [Claude Code](https://docs.anthropic.com/en/docs/claude-code) in yolo mode (`--dangerously-skip-permissions`), giving it full autonomy to read, write, and execute. The firmware prompt is passed directly to `claude` as a one-shot instruction — no framework, no SDK, just a CLI call.
 
 ## Reference Implementation
 
