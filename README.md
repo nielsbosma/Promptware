@@ -79,12 +79,20 @@ Each agent is launched via [Claude Code](https://docs.anthropic.com/en/docs/clau
 
 ## Install
 
-Clone the repo and run the install script to add the `/promptware` skill to Claude Code:
+Clone the repo and run the install script to add the `/promptware` skill to Claude Code.
 
+**Windows (PowerShell):**
 ```powershell
 git clone https://github.com/nielsbosma/Promptware.git
 cd Promptware
 .\install.ps1
+```
+
+**macOS / Linux:**
+```bash
+git clone https://github.com/nielsbosma/Promptware.git
+cd Promptware
+./install.sh
 ```
 
 Then in any Claude Code session, use `/promptware` to scaffold a new module:
